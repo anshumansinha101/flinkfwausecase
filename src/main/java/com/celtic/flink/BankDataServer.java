@@ -12,13 +12,14 @@ import java.io.BufferedReader;
 
 public class BankDataServer {
     public static void main(String[] args) throws IOException{
-	ServerSocket listener = new ServerSocket(9090);
+    System.out.println("Starting Bank Server..");
+	ServerSocket listener = new ServerSocket(9093);
 	BufferedReader br = null;
 	try{
 	    Socket socket = listener.accept();
 	    System.out.println("Got new connection: " + socket.toString());
 
-	    br = new BufferedReader(new FileReader("/home/anshuman/Documents/study/Dev/Technology/Flink/FlinkDevelopment/bank/bank_data.txt"));
+	    br = new BufferedReader(new FileReader("C:\\Users\\asinha13\\Documents\\tools\\Flink\\development\\fda\\flinkfwausecase\\src\\main\\resources/bank_data.txt"));
 	    
 	    try {		
 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
