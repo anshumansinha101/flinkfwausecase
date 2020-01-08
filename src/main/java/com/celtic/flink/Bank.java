@@ -44,7 +44,7 @@ public class Bank
     {
 	final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 	 
-	DataStream<AlarmedCustomer> alarmedCustomers =	 env.readTextFile("/home/anshuman/alarmed_cust.txt")
+	DataStream<AlarmedCustomer> alarmedCustomers =	 env.readTextFile("C:\\Users\\asinha13\\Documents\\tools\\Flink\\development\\fda\\flinkfwausecase\\src\\main\\resources\\alarmed_cust.txt")
 	        .map(new MapFunction<String, AlarmedCustomer>()
 	    		{
 		    public AlarmedCustomer map(String value)
@@ -55,7 +55,7 @@ public class Bank
 		// broadcast alarmed customer data
 	BroadcastStream<AlarmedCustomer> alarmedCustBroadcast =	 alarmedCustomers.broadcast(alarmedCustStateDescriptor);
 			
-	DataStream<LostCard> lostCards = env.readTextFile("/home/anshuman/lost_cards.txt")
+	DataStream<LostCard> lostCards = env.readTextFile("C:\\Users\\asinha13\\Documents\\tools\\Flink\\development\\fda\\flinkfwausecase\\src\\main\\resources\\lost_cards.txt")
 	    .map(new MapFunction<String, LostCard>()
 	  {
 		    public LostCard map(String value)
@@ -68,7 +68,7 @@ public class Bank
 	BroadcastStream<LostCard> lostCardBroadcast = lostCards.broadcast(lostCardStateDescriptor);
 	
 	// transaction data keyed by customer_id
-		DataStream<Tuple2<String, String>> data = env.socketTextStream("localhost", 9090)
+		DataStream<Tuple2<String, String>> data = env.socketTextStream("localhost", 9093)
 		    .map(new MapFunction<String, Tuple2<String, String>>()
 		    {
 			    public Tuple2<String, String> map(String value)
@@ -120,7 +120,7 @@ return new Tuple2<String, String>(words[3], value); //{(id_347hfx) (HFXR347924,2
 	DataStream<Tuple2<String, String>> AllFlaggedTxn =	   
 			alarmedCustTransactions	.union(lostCardTransactions, excessiveTransactions,	freqCityChangeTransactions);
 
-	AllFlaggedTxn.writeAsText("/home/anshuman/flagged_transaction");
+	AllFlaggedTxn.writeAsText("C:\\Users\\asinha13\\Documents\\tools\\Flink\\development\\fda\\flinkfwausecase\\src\\main\\resources\\flagged_transaction");
 	// execute program
 	env.execute("Streaming Bank");
     }
