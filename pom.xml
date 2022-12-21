@@ -126,9 +126,7 @@
 
 
 
-              <configuration>
-                  <autoUpdate>false</autoUpdate>
-              </configuration>
+              
               <executions>
                   <execution>
                       <goals>
