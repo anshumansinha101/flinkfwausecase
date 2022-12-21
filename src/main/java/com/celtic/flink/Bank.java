@@ -79,6 +79,8 @@ return new Tuple2<String, String>(words[3], value); //{(id_347hfx) (HFXR347924,2
 			    }
 			});
 	
+	    
+	    
 	// (1) Check against alarmed customers
 	DataStream<Tuple2<String, String>> alarmedCustTransactions = data
 	    .keyBy(0)
