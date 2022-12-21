@@ -127,7 +127,7 @@
 
 
               <configuration>
-                  <failBuildOnCVSS>8</failBuildOnCVSS>
+                  <autoUpdate>false</autoUpdate>
               </configuration>
               <executions>
                   <execution>
